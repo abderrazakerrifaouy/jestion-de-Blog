@@ -1,7 +1,9 @@
 <?php
 namespace App\Controllers;
+
+use App\Core\Helper;
 class VisiteurController{
     public function home(){
-        echo "Bienvenue sur la page d'accueil!";
+        Helper::view('visiteur/home', []);
     }
 }
