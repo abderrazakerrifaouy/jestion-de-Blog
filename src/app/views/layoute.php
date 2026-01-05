@@ -7,7 +7,7 @@
     <title><?= $title ?></title>
 </head>
 <body>
-    <?= require_once __DIR__ . '/../../app/views/' . $view . '.php'; ?>
-    
+    <?php include __DIR__ . '/partials/header.php'; ?>
+    <?php require __DIR__ . '/' . $view . '.php'; ?>
 </body>
 </html>
