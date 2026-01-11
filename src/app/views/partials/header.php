@@ -1,62 +1,99 @@
 <?php
-// Role simulation: change to 'visiteur', 'reader', 'author', or 'admin'
-$userRole = 'visiteur'; 
+$userRole = $_SESSION['role'] ?? 'visiteur';
 ?>
 
 <header class="bg-[#452829] text-[#f3e8df] shadow-md border-b border-[#57595b]">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
-      
+
+
       <div class="flex items-center space-x-8">
         <div class="flex-shrink-0 flex items-center">
-          <span class="text-2xl font-bold tracking-tighter border-b-2 border-[#d1c5f3]">ARTICL</span>
+          <span class="text-2xl font-bold tracking-tighter border-b-2 border-[#d1c5f3]">
+            ARTICL
+          </span>
         </div>
 
         <nav class="hidden md:flex space-x-4">
+
           <a href="/" class="flex items-center space-x-1 hover:text-[#d1c5f3] px-3 py-2 text-sm font-medium transition">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
             <span>Home</span>
           </a>
 
-          <?php if ($userRole !== 'visiteur'): ?>
-              <a href="#" class="hover:text-[#d1c5f3] px-3 py-2 text-sm font-medium transition">Lire Articles</a>
+
+          <?php if ($userRole === 'reader' || $userRole === 'author'): ?>
+            <a href="/articles" class="hover:text-[#d1c5f3] px-3 py-2 text-sm font-medium transition">
+              Lire Articles
+            </a>
           <?php endif; ?>
 
-          <?php if ($userRole === 'author'): ?>
-              <a href="#" class="hover:text-[#d1c5f3] px-3 py-2 text-sm font-medium transition">Gere Article</a>
+          <?php if ($userRole === 'reader'): ?>
+            <a href="/profile" class="hover:text-[#d1c5f3] px-3 py-2 text-sm font-medium transition">
+              Profile
+            </a>
           <?php endif; ?>
+
+          
 
           <?php if ($userRole === 'admin'): ?>
-              <a href="#" class="hover:text-[#d1c5f3] px-3 py-2 text-sm font-medium transition">Clear Category</a>
+            <a href="/categories" class="hover:text-[#d1c5f3] px-3 py-2 text-sm font-medium transition">
+              Clear Category
+            </a>
+            <a href="/admin_roles" class="hover:text-[#d1c5f3] px-3 py-2 text-sm font-medium transition">
+              Role Requests
+            </a>
           <?php endif; ?>
+
         </nav>
       </div>
 
       <div class="flex items-center space-x-5">
-        
+
+
         <?php if ($userRole === 'visiteur'): ?>
-            <a href="#" class="text-sm font-medium hover:text-[#d1c5f3]">Login</a>
-            <a href="#" class="bg-[#57595b] hover:bg-[#d1c5f3] hover:text-[#452829] px-4 py-2 rounded text-sm font-bold transition">
-                Create Acounte
-            </a>
+          <a href="/login" class="text-sm font-medium hover:text-[#d1c5f3]">Login</a>
+          <a href="/register"
+             class="bg-[#57595b] hover:bg-[#d1c5f3] hover:text-[#452829] px-4 py-2 rounded text-sm font-bold transition">
+            Create Account
+          </a>
+
+        <?php elseif ($userRole === 'reader'): ?>
+
+
+          <button class="text-[#e8dfd1] hover:text-white">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+          </button>
+
+          <button class="relative text-[#e8dfd1] hover:text-white">
+            <span class="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-500 ring-2 ring-[#452829]"></span>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M15 17h5l-1.405-1.405A2.032 2.032 0
+                       0118 14.158V11a6.002 6.002 0
+                       00-4-5.659V5a2 2 0
+                       10-4 0v.341C7.67
+                       6.165 6 8.388 6
+                       11v3.159c0
+                       .538-.214
+                       1.055-.595
+                       1.436L4 17h5"/>
+            </svg>
+          </button>
+
+
         <?php else: ?>
-            <button class="text-[#e8dfd1] hover:text-white">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-            </button>
+          <span class="text-sm italic text-[#d1c5f3]">
+            <?php echo ucfirst($userRole); ?>
+          </span>
+        <?php endif; ?>
 
-            <button class="relative text-[#e8dfd1] hover:text-white">
-                <span class="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-500 ring-2 ring-[#452829]"></span>
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
-            </button>
-
-            <a href="#" class="text-[#e8dfd1] hover:text-white transition">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-            </a>
-
-            <div class="flex items-center space-x-2 border-l border-[#57595b] pl-4">
-                <span class="text-xs font-semibold text-[#d1c5f3] italic"><?php echo ucfirst($userRole); ?></span>
-                <a href="#" class="text-xs hover:underline">Loge oute</a>
-            </div>
+        <?php if ($userRole !== 'visiteur'): ?>
+          <a href="/logout" class="text-xs hover:underline ml-4">
+            Logout
+          </a>
         <?php endif; ?>
 
       </div>

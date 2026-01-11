@@ -11,4 +11,5 @@ class Admin extends User {
     ) {
         parent::__construct($id, $firstName, $lastName, $email);
     }
+    
 }

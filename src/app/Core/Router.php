@@ -15,7 +15,7 @@ class Router{
          $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
        
          $method = $_SERVER['REQUEST_METHOD'];
-         $role_user = $_SESSION['role'] ?? 'visiteur';
+         $role_user = $_SESSION['role'] ?? 'visiteur'; 
 
         list($controller, $con) = explode('@', $this->routes[$method][$path][$role_user] ?? 'Non_fond_Controller@notFound');
 

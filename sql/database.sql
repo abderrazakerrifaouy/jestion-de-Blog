@@ -10,6 +10,7 @@ CREATE TABLE users (
 
 CREATE TABLE articles (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    tetel VARCHAR(100) NOT NULL ,
     idAuthor INT NOT NULL,
     content TEXT NOT NULL,
     FOREIGN KEY (idAuthor) REFERENCES users(id)
@@ -63,3 +64,20 @@ CREATE TABLE comment_likes (
     FOREIGN KEY (idComment) REFERENCES comments(id)
         ON DELETE CASCADE
 );
+
+
+CREATE TABLE dommendchengesRole (
+    idUser INT NOT NULL,
+    content TEXT NOT NULL,
+    FOREIGN KEY (idUser) REFERENCES users(id)
+        ON DELETE CASCADE
+);
+
+
+CREATE TABLE rapores (
+    idComment INT NOT NULL,
+    idReader  INT NOT NULL
+);
+
+
+

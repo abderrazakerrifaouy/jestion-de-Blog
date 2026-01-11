@@ -1,31 +1,14 @@
+<div class="bg-[#f3e8df] text-[#452829] min-h-screen pb-12">
 
-<div class="bg-[#f3e8df] text-[#452829]">
-    <section class="py-20 px-4 text-center bg-white border-b border-[#e8dfd1]">
-        <div class="max-w-4xl mx-auto">
-            <h1 class="text-5xl md:text-6xl font-extrabold tracking-tighter mb-6">
-                Connect through <span class="text-[#d1c5f3] bg-[#452829] px-2">Knowledge.</span>
-            </h1>
-            <p class="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
-                The premier platform for authors to share insights and readers to engage with meaningful content.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="/register" class="bg-[#452829] text-[#f3e8df] px-8 py-4 rounded-full font-bold hover:bg-[#57595b] transition shadow-lg">
-                    Start Reading
-                </a>
-            </div>
-        </div>
-    </section>
+    <main class="max-w-7xl mx-auto px-6 py-12">
 
-    <main class="max-w-7xl mx-auto px-4 py-16">
-        <div class="flex justify-between items-end mb-12">
-            <div>
-                <h2 class="text-3xl font-bold uppercase tracking-tight">Latest Articles</h2>
-                <div class="h-1 w-20 bg-[#d1c5f3] mt-2"></div>
-            </div>
+        <div class="mb-12">
+            <h1 class="text-4xl font-black tracking-tighter uppercase mb-2">Explorer</h1>
+            <p class="text-[#57595b] font-medium italic">Découvrez nos derniers articles rédigés par la communauté.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            
+
             <?php foreach ($articles as $art): ?>
                 <div class="bg-white rounded-[2.5rem] border border-[#e8dfd1] p-8 flex flex-col justify-between hover:shadow-2xl hover:border-[#d1c5f3] transition-all duration-300 group">
 
@@ -74,7 +57,7 @@
                                 </svg>
                                 <span class="text-xs font-black"><?php echo $art->getLikes(); ?></span>
                             </div>
-                            <a href="/register" class="bg-[#452829] p-2 rounded-xl text-[#f3e8df] hover:bg-[#d1c5f3] hover:text-[#452829] transition-all">
+                            <a href="lire_article?id=<?php echo $art->getId(); ?>" class="bg-[#452829] p-2 rounded-xl text-[#f3e8df] hover:bg-[#d1c5f3] hover:text-[#452829] transition-all">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                                 </svg>
@@ -86,12 +69,5 @@
 
         </div>
     </main>
-
-    <footer class="bg-[#452829] text-[#f3e8df] py-12">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <p class="text-2xl font-bold mb-4">ARTICL<span class="text-[#d1c5f3]">HUB</span></p>
-            <p class="text-sm opacity-60">© 2026 Your Blogging Platform. Built for the Article ecosystem.</p>
-        </div>
-    </footer>
 
 </div>
